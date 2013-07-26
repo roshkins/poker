@@ -2,12 +2,12 @@ require 'rspec'
 require 'poker'
 
 
-namespace "Game" do
+describe "Game" do
 
 
 end
 
-namespace "Card" do
+describe "Card" do
 
   let(:card) do
     Card.new(:hearts, 12)
