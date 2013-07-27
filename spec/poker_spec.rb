@@ -2,11 +2,6 @@ require 'rspec'
 require 'poker'
 
 
-describe "Game" do
-
-
-end
-
 describe "Deck" do
   let(:deck) { Deck.new }
 
@@ -74,60 +69,227 @@ describe "Hand" do
     d = double("deck")
   end
 
-  let(:hand) do
-    hand = Hand.new
-  end
+
+
 
   describe "#straight_flush?" do
-    it "returns true when its a straight flush"
-    it "returns false when its not a straight flush"
-    expect([])
 
-  end
+    it "returns true when its a straight flush" do
+
+        cards = [double("card", :value => 1, :suit => :clubs), \
+                 double("card", :value => 13, :suit => :clubs), \
+                 double("card", :value => 12, :suit => :clubs), \
+                 double("card", :value => 11, :suit => :clubs), \
+                 double("card", :value => 10, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.straight_flush?).to be_true
+    end
+
+    it "returns false when its not a straight flush" do
+
+        cards = [double("card", :value => 1, :suit => :clubs), \
+                 double("card", :value => 2, :suit => :clubs), \
+                 double("card", :value => 12, :suit => :clubs), \
+                 double("card", :value => 11, :suit => :clubs), \
+                 double("card", :value => 10, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.straight_flush?).to be_false
+    end
+ end
+
+
   describe "#four_of_a_kind?" do
-    it "returns true when its a four of a kind"
-    it "returns false when its not a four of a kind"
+    it "returns true when its a four of a kind" do
+
+        cards = [double("card", :value => 4, :suit => :clubs), \
+                 double("card", :value => 4, :suit => :hearts), \
+                 double("card", :value => 4, :suit => :spades), \
+                 double("card", :value => 4, :suit => :diamonds), \
+                 double("card", :value => 10, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.four_of_a_kind?).to be_true
+    end
+    it "returns false when its not a four of a kind" do
+
+        cards = [double("card", :value => 3, :suit => :clubs), \
+                 double("card", :value => 4, :suit => :hearts), \
+                 double("card", :value => 4, :suit => :spades), \
+                 double("card", :value => 4, :suit => :diamonds), \
+                 double("card", :value => 10, :suit => :clubs)]
+      hand =   Hand.new(cards)
+        expect(hand.four_of_a_kind?).to be_false
+    end
   end
 
 
   describe "#full_house?" do
-    it "returns true when its a full house"
-    it "returns false when its not a full house"
+    it "returns true when its a full house" do
+
+        cards = [double("card", :value => 4, :suit => :clubs), \
+                 double("card", :value => 4, :suit => :hearts), \
+                 double("card", :value => 4, :suit => :spades), \
+                 double("card", :value => 10, :suit => :diamonds), \
+                 double("card", :value => 10, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.full_house?).to be_true
+    end
+    it "returns false when its not a full house" do
+
+        cards = [double("card", :value => 3, :suit => :clubs), \
+                 double("card", :value => 4, :suit => :hearts), \
+                 double("card", :value => 4, :suit => :spades), \
+                 double("card", :value => 10, :suit => :diamonds), \
+                 double("card", :value => 10, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.full_house?).to be_false
+    end
   end
 
   describe "#flush?" do
-    it "returns true when its a flush"
-    it "returns false when its not a flush"
+    it "returns true when its a flush" do
+
+        cards = [double("card", :value => 1, :suit => :clubs), \
+                 double("card", :value => 3, :suit => :clubs), \
+                 double("card", :value => 4, :suit => :clubs), \
+                 double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 5, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.flush?).to be_true
+    end
+    it "returns false when its not a flush" do
+
+        cards = [double("card", :value => 1, :suit => :clubs), \
+                 double("card", :value => 3, :suit => :clubs), \
+                 double("card", :value => 4, :suit => :spades), \
+                 double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 5, :suit => :clubs)]
+      hand =   Hand.new(cards)
+        expect(hand.flush?).to be_false
+    end
   end
 
 
   describe "#straight?" do
-    it "returns true when its a straight"
-    it "returns false when its not a straight"
+    it "returns true when its a straight" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 8, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :clubs), \
+                 double("card", :value => 5, :suit => :clubs)]
+        hand = Hand.new(cards)
+        expect(hand.straight?).to be_true
+    end
+    it "returns false when its not a straight" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 1, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :clubs), \
+                 double("card", :value => 5, :suit => :clubs)]
+      hand =   Hand.new(cards)
+        expect(hand.straight?).to be_false
+    end
   end
 
   describe "#three_of_a_kind?" do
-    it "returns true when its a three of a kind"
-    it "returns false when its not a three of a kind"
+    it "returns true when its a three of a kind" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 9, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 9, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+        hand = Hand.new(cards)
+        expect(hand.three_of_a_kind?).to be_true
+    end
+    it "returns false when its not a three of a kind" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 8, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 9, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+        hand = Hand.new(cards)
+        expect(hand.three_of_a_kind?).to be_false
+    end
   end
 
 
   describe "#two_pair?" do
-    it "returns true when its a two pair"
-    it "returns false when its not a two pair"
+    it "returns true when its a two pair" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 9, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 7, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+        hand = Hand.new(cards)
+        expect(hand.two_pair?).to be_true
+    end
+    it "returns false when its not a two pair" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 9, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+        hand = Hand.new(cards)
+        expect(hand.two_pair?).to be_false
+    end
   end
 
   describe "#one_pair?" do
-    it "returns true when its a one pair"
-    it "returns false when its not a one pair"
+    it "returns true when its a one pair" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 9, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+        hand = Hand.new(cards)
+        expect(hand.one_pair?).to be_true
+    end
+    it "returns false when its not a one pair" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 12, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+      hand =   Hand.new(cards)
+        expect(hand.one_pair?).to be_false
+    end
   end
 
   describe "#high_card?" do
-    it "returns true when its a high card"
-    it "returns false when its not a high card"
+    it "returns true when its a high card" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 12, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :diamonds), \
+                 double("card", :value => 8, :suit => :spades)]
+      hand =   Hand.new(cards)
+        expect(hand.high_card?).to be_true
+    end
+    it "returns false when its not a high card" do
+
+        cards = [double("card", :value => 9, :suit => :clubs), \
+                 double("card", :value => 12, :suit => :hearts), \
+                 double("card", :value => 7, :suit => :spades), \
+                 double("card", :value => 6, :suit => :diamonds), \
+                 double("card", :value => 12, :suit => :spades)]
+      hand =   Hand.new(cards)
+        expect(hand.high_card?).to be_false
+    end
   end
 
+  describe "#winning_hand" do
+    it "returns true when straight flush beats four of a kind"
+  end
 end
+
 
 
 

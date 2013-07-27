@@ -48,6 +48,18 @@ class Deck
     @cards -= return_cards
     return_cards
   end
+end
 
+class Hand
+  def initialize(cards)
+    @cards = cards
+  end
+
+  def self.straight_flush?(cards)
+    flush? && straight?
+  end
+
+  def self
+  end
 
 end
